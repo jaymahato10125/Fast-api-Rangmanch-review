@@ -33,3 +33,8 @@ htmlcov/
 .env
 .env.*
 !.env.example
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
