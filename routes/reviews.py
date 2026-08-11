@@ -1,0 +1,14 @@
+from fastapi import APIRouter, Depends
+from sqlmodel import Session, select, func
+from models import Review, ReviewCreate, ReviewRead, ReviewUpdate
+from database import get_session
+
+router = APIRouter(prefix="/reviews", tags=["Reviews"])
+
+@router.get("/", response_model=ReviewRead)
+def creat_review(review: ReviewCreate, session: Session = Depends(get_session)):
+    db_review = Review(**review.model_dump())
+    session.add(db_review)
+    session.commit()
+    session.refresh(db_review)
+    return db_review
