@@ -14,14 +14,13 @@ class Review(SQLModel, table=True):
 
 class ReviewCreate(SQLModel):
     play_name: str
-    reviewer_name: str
     rating: int = Field(ge=1, le=5)
     comment: str
 
 class ReviewRead(SQLModel):
     id: int
     play_name: str
-    reviewer_name: str
+    review_text: str
     rating: int
     comment: str
     created_at: datetime
